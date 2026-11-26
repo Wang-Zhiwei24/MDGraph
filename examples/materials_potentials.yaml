@@ -1,0 +1,25 @@
+entries:
+  - id: al_mishin_1999
+    kind: eam/alloy
+    elements: [Al]
+    units: metal
+    phases: [fcc]
+    target_properties: [lattice_constant]
+    temperature_k: [0, 0]
+    pressure_bar: [0, 0]
+    model: potential_models/Al99.eam.alloy
+    model_sha256: 60c8a085be79d273324ab421f5b1447578fef55c1acfc6492c0999f15ee8a284
+    source: https://www.ctcms.nist.gov/potentials/entry/1999--Mishin-Y-Farkas-D-Mehl-M-J-Papaconstantopoulos-D-A--Al/
+    fit_notes: "Mishin et al. (1999), elemental Al. The original publication discusses basic equilibrium properties and elastic constants. The NIST release notes give an FCC Al static lattice check for this exact LAMMPS tabulation. This supports the target property but is not an independent test on unseen structures."
+  - id: al_jacobsen_1987
+    kind: eam
+    elements: [Al]
+    units: metal
+    phases: [fcc]
+    target_properties: [lattice_constant]
+    temperature_k: [0, 0]
+    pressure_bar: [0, 0]
+    model: potential_models/Al_jnp.eam
+    model_sha256: 611b8256b8cb82a38bd233d7a0246b19f82ecda66b9eb930d7e4270a084f096a
+    source: https://github.com/lammps/lammps/blob/stable_22Jul2025/potentials/Al_jnp.eam
+    fit_notes: "The distributed file cites Jacobsen, Norskov and Puska, Phys. Rev. B 35, 7423 (1987), and identifies FCC Al. The file is an independent elemental Al alternative. A direct validation report for this tabulation is not included here; do not infer accuracy from the file header alone."

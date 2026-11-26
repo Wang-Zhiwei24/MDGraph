@@ -1,0 +1,27 @@
+name: argon_mdanalysis
+goal: Run a short FCC argon NVT demonstration and produce periodic RDF and unwrapped MSD.
+structure:
+  demo_argon: true
+  elements: [Ar]
+potential:
+  kind: lj_demo
+protocol:
+  ensemble: nvt
+  temperature_k: 50
+  timestep_fs: 1
+  steps: 2000
+  thermo_every: 100
+  dump_every: 200
+execution:
+  backend: local
+  command: [/usr/bin/lmp]
+  poll_seconds: 1
+  timeout_seconds: 90
+  max_watch_seconds: 240
+validation:
+  trajectory_backend: mdanalysis
+  species_resolved: true
+  trajectory_plots: true
+  rdf_max_angstrom: 8
+llm:
+  enabled: false

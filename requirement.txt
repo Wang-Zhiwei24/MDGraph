@@ -1,0 +1,5 @@
+# Run from the MDGraph project root with Python 3.11 or newer:
+# python -m pip install -r requirement.txt
+# Python dependencies are defined in pyproject.toml; llm enables DeepSeek.
+# Install the LAMMPS and Atomsk executables separately as needed.
+-e .[llm]

@@ -1,0 +1,30 @@
+name: al_nist_online
+goal: Calculate the 0 K lattice constant of bulk FCC Al at zero external pressure. Select a potential based on evidence for the equilibrium bulk FCC phase and state the limitations.
+structure:
+  elements: [Al]
+  builder: auto
+  crystal:
+    lattice: fcc
+    a_angstrom: 4.00
+    repeat: [4, 4, 4]
+potential:
+  kind: auto
+  discover: nist
+  allowed_kinds: [eam/alloy]
+protocol:
+  ensemble: relax
+  temperature_k: 0
+  pressure_bar: 0
+execution:
+  backend: local
+  command: [/usr/bin/lmp]
+  timeout_seconds: 90
+  poll_seconds: 1
+  max_watch_seconds: 180
+llm:
+  enabled: true
+  decisions: true
+  model: deepseek-flash
+  base_url: https://api.deepseek.com
+  api_key_env: MDGRAPH_API_KEY
+  direct_connection: true

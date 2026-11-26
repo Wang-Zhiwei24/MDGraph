@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mdgraph-agent"
+dynamic = ["version"]
+description = "Checkpointed LangGraph agents for local and SSH/HPC LAMMPS workflows"
+requires-python = ">=3.11"
+dependencies = ["langgraph==1.0.3", "langgraph-checkpoint-sqlite==3.0.0", "pydantic>=2.10,<3", "PyYAML>=6,<7", "numpy>=1.26,<3", "scipy>=1.8,<2", "ase>=3.25,<4", "paramiko>=3.5,<5"]
+
+[project.optional-dependencies]
+llm = ["langchain-openai>=1,<2"]
+dev = ["pytest>=8,<10"]
+smoke = ["lammps>=2025.7.22"]
+trajectory = ["MDAnalysis==2.9.0", "matplotlib>=3.8,<4"]
+crystalline-preview = ["cellulose-forge==1.2.0"]
+
+[project.scripts]
+mdgraph = "mdgraph.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mdgraph = ["molecular_models.yaml"]
+
+[tool.setuptools.dynamic]
+version = {attr = "mdgraph.__version__"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E9", "F", "I"]
+

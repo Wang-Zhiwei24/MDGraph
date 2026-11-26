@@ -1,0 +1,9 @@
+{
+  "model_sha256": "REPLACE_WITH_SHA256_OF_YOUR_ACTUAL_MODEL_FILE",
+  "elements": ["C"],
+  "units": "metal",
+  "source": "Describe dataset, training method and model release here",
+  "validated_domain": "Describe temperature, pressure, composition and phases supported by evidence",
+  "limitations": "Metadata is a user declaration; it does not prove actual model accuracy or parse internal type_map."
+}
+

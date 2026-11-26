@@ -1,0 +1,28 @@
+name: argon_smoke
+goal: Validate the orchestration with real LAMMPS on a 256-atom argon LJ crystal; not an ML potential benchmark.
+structure:
+  demo_argon: true
+  elements: [Ar]
+potential:
+  kind: lj_demo
+protocol:
+  ensemble: nvt
+  temperature_k: 50
+  timestep_fs: 1.0
+  steps: 2000
+  thermo_every: 100
+  dump_every: 200
+  tdamp_fs: 100
+execution:
+  backend: local
+  scheduler: shell
+  command: [python, -m, mdgraph.lammps_runner]
+  timeout_seconds: 120
+  poll_seconds: 1
+  max_watch_seconds: 180
+validation:
+  temperature_relative_tolerance: 0.3
+  rdf_max_angstrom: 8.0
+llm:
+  enabled: false
+

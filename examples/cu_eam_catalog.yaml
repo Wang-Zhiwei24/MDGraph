@@ -1,0 +1,11 @@
+entries:
+  - id: mishin_2001_cu_eam1_lammps
+    kind: eam/alloy
+    elements: [Cu]
+    units: metal
+    application: fcc_cu_lattice_static
+    temperature_k: [0, 0]
+    pressure_bar: [0, 0]
+    source: 'LAMMPS stable_22Jul2025 bundled Cu_mishin1.eam.alloy; Mishin et al. (2001), doi:10.1103/PhysRevB.63.224106'
+    model: Cu_mishin1.eam.alloy
+    model_sha256: 16cf6f37be9a51510e0496831d9fac00fca3f2d90c03652250b085cba1de8345

@@ -1,0 +1,27 @@
+name: graphene_slit_water_20A
+goal: Compute the wall-normal mass density of liquid water between two rigid graphene monolayers.
+structure:
+  elements: [O, H, C]
+  molecular:
+    species: water
+    phase: liquid
+    geometry: graphene_slit
+    repeat: 9
+    slit_width_angstrom: 20
+    vacuum_angstrom: 30
+    density_g_cm3: 0.997
+potential:
+  kind: molecular
+  candidate_id: spce
+  target_property: density_profile
+protocol:
+  ensemble: nvt
+  equilibration_ensemble: nvt
+  sampling_mode: production
+  temperature_k: 298.15
+  timestep_fs: 2
+  equilibration_steps: 150000
+  steps: 500000
+  thermo_every: 1000
+  dump_every: 1000
+  minimize: false

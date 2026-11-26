@@ -1,0 +1,34 @@
+name: carbon_ace_nvt
+goal: Execute an existing ACE potential on a PBS cluster.
+structure:
+  path: inputs/carbon.extxyz
+  elements: [C]
+potential:
+  kind: pace
+  model: inputs/carbon.yace
+  metadata: inputs/potential_metadata.json
+protocol:
+  ensemble: nvt
+  temperature_k: 300
+  timestep_fs: 0.5
+  steps: 20000
+  thermo_every: 100
+  dump_every: 100
+execution:
+  backend: ssh
+  scheduler: pbs
+  host: cluster.example.org
+  username: YOUR_USERNAME
+  remote_root: /absolute/path/to/your/mdgraph_runs
+  partition: workq
+  nodes: 1
+  tasks: 4
+  cpus_per_task: 1
+  memory_gb: 16
+  walltime: "02:00:00"
+  command: [mpirun, -np, "4", lmp]
+  setup:
+    - "module load lammps"
+  poll_seconds: 30
+  max_watch_seconds: 14400
+

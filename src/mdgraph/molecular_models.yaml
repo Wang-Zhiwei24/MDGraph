@@ -1,0 +1,60 @@
+species:
+  water:
+    label: H2O (water)
+    elements: [O, H]
+    phases: [liquid]
+    initial_liquid_density_g_cm3: 0.997
+  co2:
+    label: CO2 (carbon dioxide)
+    elements: [C, O]
+    phases: [gas, liquid, supercritical]
+    initial_liquid_density_g_cm3: 0.8
+  ethanol:
+    label: C2H6O (ethanol)
+    elements: [C, O, H]
+    phases: [liquid]
+    initial_liquid_density_g_cm3: 0.789
+
+# Site rows contain element, mass (g/mol), charge (e), epsilon/kB (K), sigma (Å).
+# Bond and angle rows index sites starting at zero. Angles use kcal/mol/rad²
+# for the LAMMPS harmonic prefactor, which includes the factor of one half.
+models:
+  spce:
+    species: water
+    source: https://doi.org/10.1021/jp960615b
+    evidence: Three-site rigid SPC/E water has published liquid-vapor interface simulations and bulk-fluid benchmarks.
+    integration: rigid
+    sites: [[O, 15.9994, -0.8476, 78.14999355, 3.166], [H, 1.008, 0.4238, 0, 1], [H, 1.008, 0.4238, 0, 1]]
+    coordinates: [[0, 0, 0], [1, 0, 0], [-0.3333132476, 0.9428161427, 0]]
+    bonds: [[0, 1, 1.0], [0, 2, 1.0]]
+    angles: [[1, 0, 2, 55, 109.47]]
+  tip3p_ewald:
+    species: water
+    source: https://docs.lammps.org/Howto_tip3p.html
+    evidence: TIP3P parametrized for Ewald electrostatics. Model choice affects interface tension and transport.
+    integration: rigid
+    sites: [[O, 15.9994, -0.834, 51.32839242, 3.188], [H, 1.008, 0.417, 0, 1], [H, 1.008, 0.417, 0, 1]]
+    coordinates: [[0, 0, 0], [0.9572, 0, 0], [-0.2399872084, 0.9266272065, 0]]
+    bonds: [[0, 1, 0.9572], [0, 2, 0.9572]]
+    angles: [[1, 0, 2, 55, 104.52]]
+  trappe_co2:
+    species: co2
+    source: https://www.nist.gov/mml/csd/chemical-informatics-group/benchmark-results-trappe-carbon-dioxide
+    parameters_source: https://doi.org/10.1021/acs.jctc.3c01144
+    evidence: Rigid three-site TraPPE CO2, fitted to phase equilibrium. NIST provides thermodynamic benchmarks.
+    integration: rigid
+    sites: [[C, 12.011, 0.7, 27, 2.80], [O, 15.9994, -0.35, 79, 3.05], [O, 15.9994, -0.35, 79, 3.05]]
+    coordinates: [[0, 0, 0], [-1.16, 0, 0], [1.16, 0, 0]]
+    bonds: [[0, 1, 1.16], [0, 2, 1.16]]
+  trappe_ua_ethanol:
+    species: ethanol
+    source: https://doi.org/10.1021/jp003882x
+    parameters_source: https://macsphere.mcmaster.ca/bitstream/11375/25432/1/LiJPCB20.pdf
+    evidence: TraPPE-UA ethanol nonbonded, angle and torsion parameters. The LAMMPS variant constrains CH3–CH2 and O–H and uses a stiff 450 kcal/mol/Å² prefactor for CH2–O, approximating the original fixed bond.
+    integration: shake_bonds
+    sites: [[C, 15.035, 0, 98, 3.75], [C, 14.027, 0.265, 46, 3.95], [O, 15.9994, -0.700, 93, 3.02], [H, 1.008, 0.435, 0, 1]]
+    coordinates: [[0, 0, 0], [1.54, 0, 0], [2.016637944, 1.348227084, 0], [1.271663254, 1.929637190, 0]]
+    bonds: [[0, 1, 1.54], [1, 2, 1.43], [2, 3, 0.945]]
+    constrained_bond_types: [1, 3]
+    angles: [[0, 1, 2, 50.0775, 109.47], [1, 2, 3, 55.0455, 108.5]]
+    torsions: [[0, 1, 2, 3, 209.82, -29.17, 187.93]]

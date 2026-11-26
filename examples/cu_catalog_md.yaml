@@ -1,0 +1,22 @@
+name: cu_catalog_md
+goal: Generate an FCC Cu supercell and prepare a short LAMMPS PACE test.
+structure:
+  elements: [Cu]
+  crystal:
+    lattice: fcc
+    a_angstrom: 3.615
+    repeat: [4, 4, 4]
+potential:
+  kind: pace
+  catalog: cu_catalog.yaml
+  application: fcc_cu_smoke
+protocol:
+  ensemble: nvt
+  temperature_k: 300
+  timestep_fs: 1
+  steps: 2000
+  thermo_every: 100
+  dump_every: 200
+execution:
+  backend: local
+  command: [lmp]  # Use a LAMMPS build with the ML-PACE package before running.

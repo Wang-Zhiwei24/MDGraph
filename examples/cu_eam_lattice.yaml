@@ -1,0 +1,25 @@
+name: cu_eam_lattice
+goal: Relax a 256-atom FCC copper supercell at 0 K and zero external pressure.
+structure:
+  elements: [Cu]
+  crystal:
+    lattice: fcc
+    a_angstrom: 3.50
+    repeat: [4, 4, 4]
+potential:
+  kind: eam/alloy
+  catalog: cu_eam_catalog.yaml
+  application: fcc_cu_lattice_static
+protocol:
+  ensemble: relax
+  temperature_k: 0
+  pressure_bar: 0
+execution:
+  backend: local
+  scheduler: shell
+  command: [python, -m, mdgraph.lammps_runner]
+  timeout_seconds: 120
+  poll_seconds: 1
+  max_watch_seconds: 180
+llm:
+  enabled: false

@@ -1,0 +1,44 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	manager(manager)
+	structure_agent(structure_agent)
+	potential_agent(potential_agent)
+	input_agent(input_agent)
+	operator(operator)
+	monitor(monitor)
+	collector(collector)
+	analysis_agent(analysis_agent)
+	diagnostician(diagnostician)
+	retry_execution(retry_execution)
+	report(report)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> manager;
+	analysis_agent --> manager;
+	collector --> manager;
+	diagnostician --> manager;
+	input_agent --> manager;
+	manager -.-> analysis_agent;
+	manager -.-> collector;
+	manager -.-> diagnostician;
+	manager -.-> input_agent;
+	manager -.-> monitor;
+	manager -.-> operator;
+	manager -.-> potential_agent;
+	manager -.-> report;
+	manager -.-> retry_execution;
+	manager -.-> structure_agent;
+	monitor --> manager;
+	operator --> manager;
+	potential_agent --> manager;
+	retry_execution --> manager;
+	structure_agent --> manager;
+	report --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+
